@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import ApplyPresenter from "./ApplyrPresenter";
-import axios from "axios";
+import Http from "Api/api";
 
 const Container = styled.div``;
 
@@ -36,7 +36,7 @@ const ApplyContainer = () => {
             sale,
         };
         try {
-            const respose = await axios.post("/apply", info);
+            const respose = await Http.post("/apply", info);
             console.log(respose);
         } catch (e) {
             console.log(e);

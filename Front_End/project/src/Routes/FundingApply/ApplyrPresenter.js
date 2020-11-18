@@ -1,11 +1,24 @@
 import React from "react";
 import styled from "styled-components";
 
-const Container = styled.div``;
+const Container = styled.div`
+    margin-top: 50px;
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+`;
 const Title = styled.div``;
-const Input = styled.input``;
+const Input = styled.input`
+    margin-bottom: 20px;
+`;
 
-const Form = styled.form``;
+const Form = styled.form`
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+`;
 
 const Button = styled.button``;
 

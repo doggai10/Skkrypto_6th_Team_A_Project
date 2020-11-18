@@ -7,7 +7,7 @@ const Container = styled.div`
     background-image: url(${BackGround});
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
 `;
 
 const Title = styled.div`
@@ -16,10 +16,6 @@ const Title = styled.div`
 `;
 
 const HomePresenter = () => {
-    return (
-        <Container>
-            <Title>hihi</Title>
-        </Container>
-    );
+    return <Container></Container>;
 };
 export default HomePresenter;
