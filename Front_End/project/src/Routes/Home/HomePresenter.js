@@ -3,17 +3,13 @@ import styled from "styled-components";
 import BackGround from "assets/background.png";
 
 const Container = styled.div`
-    height: 100vh;
     background-image: url(${BackGround});
+    height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
-    /* background-attachment: fixed; */
 `;
 
-const Title = styled.div`
-    font-size: 40px;
-    color: white;
-`;
+const Title = styled.div``;
 
 const HomePresenter = () => {
     return <Container></Container>;

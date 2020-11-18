@@ -5,7 +5,6 @@ import Logo from "assets/logo.png";
 
 const Container = styled.div`
     position: fixed;
-    position: fixed;
     top: 0;
     left: 0;
     right: 0;
@@ -21,7 +20,6 @@ const Container = styled.div`
 
 const Title = styled.div`
     font-size: 40px;
-    /* margin-left: 100px; */
 `;
 
 const BtnBox = styled.div`
@@ -56,11 +54,10 @@ const Header = () => {
                 <Img src={Logo} alt={"logo"}></Img>
                 <Title>성대한 할인</Title>
             </LogoBox>
-
             <BtnBox>
                 <Button to="/">Home</Button>
                 <Button to="/funding">할인 펀딩</Button>
-                <Button to="/mypage">MyPage</Button>
+                <Button to="/mypage">로그인/회원가입</Button>
                 <Button to="/apply">펀딩 신청</Button>
             </BtnBox>
         </Container>

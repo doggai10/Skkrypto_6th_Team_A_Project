@@ -10,7 +10,10 @@ const Container = styled.div`
 `;
 const Title = styled.div``;
 const Input = styled.input`
+    font-size: 30px;
     margin-bottom: 20px;
+    border-radius: 5px;
+    border: 2px solid black;
 `;
 
 const Form = styled.form`
