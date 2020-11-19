@@ -3,10 +3,12 @@ import styled from "styled-components";
 import BackGround from "assets/background.png";
 
 const Container = styled.div`
+    position: relative;
     background-image: url(${BackGround});
     height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
+    z-index: 1;
 `;
 
 const Title = styled.div``;
