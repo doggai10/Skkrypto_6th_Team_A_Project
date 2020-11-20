@@ -20,8 +20,8 @@ const SignUpContainer = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const SignData = { name, email, privatKey };
-        // console.log(SignData);
+        const SignData = { name, email, privatKey, password, confirm };
+
         try {
             const res = await axios.post("/sign-up", SignData);
             alert("저장 성공!");
@@ -31,13 +31,12 @@ const SignUpContainer = () => {
     };
 
     const doesPasswordMatch = () => {
-        console.log(password, confirm);
         return password === confirm;
     };
     const renderFeedbackMessage = () => {
         if (confirm) {
             if (!doesPasswordMatch()) {
-                return <Error>패스워드가 일치하지 않습니다</Error>;
+                return <Error>패스워드가 일치하지 않습니다.</Error>;
             }
         }
     };
@@ -77,6 +76,7 @@ const SignUpContainer = () => {
                 handlepKey={handlepKey}
                 handleSubmit={handleSubmit}
                 renderFeedbackMessage={renderFeedbackMessage}
+                doesPasswordMatch={doesPasswordMatch}
             ></SignUpPresenter>
         </Container>
     );
