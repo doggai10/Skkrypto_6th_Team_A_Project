@@ -53,9 +53,9 @@ const SignIn = () => {
         e.preventDefault();
 
         try {
-            const res = axios.post("/login", loginKey);
+            const res = await axios.post("/login", loginKey);
 
-            const isLogin = axios.get("/login");
+            const isLogin = await axios.get("/login");
 
             console.log(isLogin);
         } catch (e) {
