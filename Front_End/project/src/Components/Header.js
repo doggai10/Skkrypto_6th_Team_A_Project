@@ -24,6 +24,7 @@ const Title = styled.div`
 `;
 
 const BtnBox = styled.div`
+    display: flex;
     margin-right: 100px;
 `;
 
