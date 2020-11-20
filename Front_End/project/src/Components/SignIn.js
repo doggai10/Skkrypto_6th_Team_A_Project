@@ -8,15 +8,25 @@ import axios from "axios";
 const Container = styled.form`
     display: flex;
     flex-direction: column;
+    border-radius: 10px;
+`;
+
+const Input = styled.input`
+    margin-bottom: 10px;
+    font-size: 20px;
 `;
 const customStyles = {
+    overlay: {},
     content: {
+        height: "300px",
+        width: "500px",
         top: "50%",
         left: "50%",
         right: "auto",
         bottom: "auto",
         marginRight: "-50%",
         transform: "translate(-50%, -50%)",
+        borderRadius: "20px",
     },
 };
 
@@ -26,13 +36,13 @@ const Button = styled.button`
     background: none;
     padding: 0 50px;
     font-size: 25px;
-    @import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
-    font-family: "Jua", sans-serif;
     transition: all 0.4s ease;
     -webkit-transition: all 0.4s ease;
+    cursor: pointer;
     &:hover {
         color: #ffeb3b;
     }
+    font-family: "Jua", sans-serif;
 `;
 
 Modal.setAppElement("#root");
@@ -47,13 +57,14 @@ const SignIn = () => {
         setIsOpen(false);
     };
 
-    const [loginKey, setLoginKey] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        const userData = { email, password };
         try {
-            const res = await axios.post("/login", loginKey);
+            const res = await axios.post("/login", userData);
 
             const isLogin = await axios.get("/login");
 
@@ -63,8 +74,12 @@ const SignIn = () => {
         }
     };
 
-    const handleKey = (e) => {
-        setLoginKey(e.target.value);
+    const handleEmail = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
     };
 
     return (
@@ -78,15 +93,23 @@ const SignIn = () => {
             >
                 <Container onSubmit={handleSubmit}>
                     <h2>로그인</h2>
-                    <div>개인키</div>
-                    <input
+                    <div>이메일</div>
+                    <Input
                         type="text"
-                        value={loginKey}
-                        onChange={handleKey}
-                    ></input>
+                        value={email}
+                        onChange={handleEmail}
+                    ></Input>
+                    <div>패스워드</div>
+                    <Input
+                        type="password"
+                        value={password}
+                        onChange={handlePassword}
+                    ></Input>
                     <button>로그인</button>
                     <button onClick={closeModal}>취소</button>
-                    <Link to="/signup">회원가입하기</Link>
+                    <Link to="/signup" onClick={closeModal}>
+                        회원가입하기
+                    </Link>
                 </Container>
             </Modal>
         </div>

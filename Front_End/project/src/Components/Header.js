@@ -15,12 +15,11 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    @import url("https://fonts.googleapis.com/css2?family=Jua&display=swap");
-    font-family: "Jua", sans-serif;
 `;
 
 const Title = styled.div`
     font-size: 40px;
+    padding: 5px 0;
 `;
 
 const BtnBox = styled.div`
@@ -35,6 +34,7 @@ const Button = styled(Link)`
     font-size: 25px;
     transition: all 0.4s ease;
     -webkit-transition: all 0.4s ease;
+    cursor: pointer;
     &:hover {
         color: #ffeb3b;
     }
