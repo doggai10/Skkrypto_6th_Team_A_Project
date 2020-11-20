@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Logo from "assets/logo.png";
+import SignIn from "Components/SignIn";
 
 const Container = styled.div`
     position: fixed;
@@ -57,7 +58,7 @@ const Header = () => {
             <BtnBox>
                 <Button to="/">Home</Button>
                 <Button to="/funding">할인 펀딩</Button>
-                <Button to="/signin">로그인/회원가입</Button>
+                <SignIn></SignIn>
                 <Button to="/apply">펀딩 신청</Button>
             </BtnBox>
         </Container>

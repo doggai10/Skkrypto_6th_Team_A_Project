@@ -8,7 +8,6 @@ const Container = styled.div`
     height: 100vh;
     background-size: cover;
     background-repeat: no-repeat;
-    z-index: 1;
 `;
 
 const Title = styled.div``;

@@ -37,7 +37,7 @@ const ApplyContainer = () => {
         };
         try {
             const respose = await Http.post("/apply", info);
-            console.log(respose);
+            alert("저장 성공!");
         } catch (e) {
             console.log(e);
         }

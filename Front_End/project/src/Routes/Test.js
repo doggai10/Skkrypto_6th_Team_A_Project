@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Modal from "react-modal";
+import styled from "styled-components";
+import { Link, useHistory } from "react-router-dom";
 
+const Container = styled.form`
+    display: flex;
+    flex-direction: column;
+`;
 const customStyles = {
     content: {
         top: "50%",
@@ -27,9 +33,19 @@ const Test = () => {
         setIsOpen(false);
     }
 
+    const history = useHistory();
+
+    const GoSignUp = () => {
+        console.log("hi");
+        console.log(modalIsOpen);
+        setIsOpen(false);
+        history.push("/signup");
+    };
+
+    ///////////////////////////////////////////////////////////
+
     return (
         <div>
-            <button onClick={openModal}>Open Modal</button>
             <Modal
                 isOpen={modalIsOpen}
                 onAfterOpen={afterOpenModal}
@@ -37,12 +53,14 @@ const Test = () => {
                 style={customStyles}
                 contentLabel="Example Modal"
             >
-                <h2>로그인</h2>
-                <button onClick={closeModal}>취소</button>
-                <div>I am a modal</div>
-                <form>
-                    <input />
-                </form>
+                <Container>
+                    <h2>로그인</h2>
+                    <div>개인키</div>
+                    <input type="text"></input>
+                    <button>로그인</button>
+                    <button onClick={closeModal}>취소</button>
+                    <Link onClick={GoSignUp}>회원가입하기</Link>
+                </Container>
             </Modal>
         </div>
     );

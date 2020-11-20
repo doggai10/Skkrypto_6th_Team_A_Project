@@ -7,6 +7,8 @@ import Mypage from "Routes/Mypage";
 import Apply from "Routes/FundingApply";
 import SignIn from "Components/SignIn";
 import Test from "Routes/Test";
+import SignUp from "Routes/SignUp";
+import SignUpPresenter from "Routes/SignUp/SignUpPresenter";
 
 const Router = () => {
     return (
@@ -20,6 +22,7 @@ const Router = () => {
                 <Route path="/funding/:id" exact component={Home} />
                 <Route path="/signin" exact component={SignIn} />
                 <Route path="/test" exact component={Test} />
+                <Route path="/signup" exact component={SignUp} />
                 <Redirect path="*" to="/" />
             </Switch>
         </BrowserRouter>
