@@ -71,9 +71,14 @@ const SignUpPresenter = ({
             <Title>이메일</Title>
             <Input onChange={handleEmail} value={email}></Input>
             <Title>패스워드</Title>
-            <Input onChange={handlePassword} value={password}></Input>
+            <Input
+                type="password"
+                onChange={handlePassword}
+                value={password}
+            ></Input>
             <Title>패스워드 확인</Title>
             <Confirm
+                type="password"
                 onChange={handleConfirmPassword}
                 value={confirm}
                 isOk={doesPasswordMatch()}
