@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
     html, body {
         height:100vh;
         width: 100%;
-        overflow: hidden; 
+        overflow: auto; 
         margin: 0; 
         padding: 0;   
         font-family: "Jua", sans-serif;

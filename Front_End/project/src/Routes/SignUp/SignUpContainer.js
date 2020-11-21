@@ -14,13 +14,13 @@ const Error = styled.div`
 const SignUpContainer = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    const [privatKey, setpKey] = useState("");
+    // const [privatKey, setpKey] = useState("");
     const [password, setPassword] = useState("");
     const [confirm, setCofirm] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const SignData = { name, email, privatKey, password, confirm };
+        const SignData = { name, email, password, confirm };
 
         try {
             const res = await axios.post("/sign-up", SignData);
@@ -47,9 +47,9 @@ const SignUpContainer = () => {
         setEmail(e.target.value);
     };
 
-    const handlepKey = (e) => {
-        setpKey(e.target.value);
-    };
+    // const handlepKey = (e) => {
+    //     setpKey(e.target.value);
+    // };
 
     const handlePassword = (e) => {
         // console.log(e.target.value);
@@ -68,12 +68,10 @@ const SignUpContainer = () => {
                 email={email}
                 password={password}
                 cofirm={confirm}
-                privatKey={privatKey}
                 handleName={handleName}
                 handleEmail={handleEmail}
                 handlePassword={handlePassword}
                 handleConfirmPassword={handleConfirmPassword}
-                handlepKey={handlepKey}
                 handleSubmit={handleSubmit}
                 renderFeedbackMessage={renderFeedbackMessage}
                 doesPasswordMatch={doesPasswordMatch}

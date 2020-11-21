@@ -56,12 +56,10 @@ const SignUpPresenter = ({
     email,
     password,
     confirm,
-    privatKey,
     handleName,
     handleEmail,
     handlePassword,
     handleConfirmPassword,
-    handlepKey,
     handleSubmit,
     renderFeedbackMessage,
     doesPasswordMatch,
@@ -81,12 +79,12 @@ const SignUpPresenter = ({
                 isOk={doesPasswordMatch()}
             ></Confirm>
             {renderFeedbackMessage()}
-            <Title>개인키</Title>
+            {/* <Title>개인키</Title>
             <SecretInput
                 type="password"
                 onChange={handlepKey}
                 value={privatKey}
-            ></SecretInput>
+            ></SecretInput> */}
             <Button>SAVE</Button>
         </Container>
     );

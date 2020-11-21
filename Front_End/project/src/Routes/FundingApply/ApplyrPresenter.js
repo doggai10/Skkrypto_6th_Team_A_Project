@@ -5,9 +5,9 @@ import Logo from "assets/logo.png";
 const Container = styled.div`
     margin-top: 50px;
     width: 100%;
-    overflow: auto;
     display: flex;
     justify-content: center;
+    overflow: auto;
 `;
 
 const Top = styled.div`
