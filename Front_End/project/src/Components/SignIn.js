@@ -67,7 +67,8 @@ const SignIn = () => {
             const res = await axios.post("/login", userData);
 
             const isLogin = await axios.get("/login");
-
+            if (isLogin.data) {
+            }
             console.log(isLogin);
         } catch (e) {
             console.log(e);
