@@ -3,7 +3,9 @@ import styled from "styled-components";
 import ApplyPresenter from "./ApplyrPresenter";
 import Http from "Api/api";
 
-const Container = styled.div``;
+const Container = styled.div`
+    overflow: auto;
+`;
 
 const ApplyContainer = () => {
     const [wallet, setWallet] = useState("");

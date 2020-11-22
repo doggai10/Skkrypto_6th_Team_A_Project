@@ -32,7 +32,7 @@ public class AccountService implements UserDetailsService {
     }
 
     private Account saveNewAccount(SignUpForm signUpForm) {
-        signUpForm.setPassword(passwordEncoder.encode(signUpForm.getPassword()));
+        //signUpForm.setPassword(passwordEncoder.encode(signUpForm.getPassword()));
         Account account=modelMapper.map(signUpForm,Account.class);
         return accountRepository.save(account);
     }
@@ -46,8 +46,6 @@ public class AccountService implements UserDetailsService {
                 List.of(new SimpleGrantedAuthority("ROLE_USER")));
         SecurityContext context = SecurityContextHolder.getContext();
         context.setAuthentication(token);
-
-
     }
 
     @Transactional(readOnly = true)
@@ -60,6 +58,7 @@ public class AccountService implements UserDetailsService {
         }
         return new UserAccount(account);
     }
+
 
 }
 
