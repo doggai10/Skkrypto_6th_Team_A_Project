@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Logo from "assets/logo.png";
+import DateTimePicker from "react-datetime-picker";
 
 const Container = styled.div`
     margin-top: 50px;
@@ -17,10 +18,11 @@ const Top = styled.div`
     text-align: center;
 `;
 
-const Title = styled.div``;
+const Title = styled.div`
+    margin-top: 20px;
+`;
 const Input = styled.input`
     font-size: 30px;
-    margin-bottom: 20px;
     border-radius: 5px;
     border: 2px solid black;
 `;
@@ -57,7 +59,7 @@ const Button = styled.button`
     cursor: pointer;
     width: 200px;
     outline: none;
-    margin: 0 auto;
+    margin: 20px auto;
     height: 50px;
     font-size: 20px;
     border: 1px solid darken(#e1332d, 4%);
@@ -79,11 +81,15 @@ const ApplyPresenter = ({
     name,
     content,
     sale,
+    startDate,
+    money,
     handleWallet,
     handleName,
     handleContent,
     handleSale,
     handleForm,
+    setStartDate,
+    handleMoney,
 }) => {
     return (
         <>
@@ -123,6 +129,18 @@ const ApplyPresenter = ({
                         type="text"
                         onChange={handleSale}
                         value={sale}
+                    ></Input>
+                    <Title>마감 날짜</Title>
+                    <DateTimePicker
+                        onChange={setStartDate}
+                        value={startDate}
+                        format="y-MM-dd HH시"
+                    />
+                    <Title>모금액(원)</Title>
+                    <Input
+                        type="number"
+                        onChange={handleMoney}
+                        value={money}
                     ></Input>
                     <Button>SAVE</Button>
                 </Form>
