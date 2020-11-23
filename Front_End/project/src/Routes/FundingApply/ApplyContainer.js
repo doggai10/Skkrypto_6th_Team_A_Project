@@ -14,6 +14,8 @@ const ApplyContainer = () => {
     const [sale, setSale] = useState("");
     const [startDate, setStartDate] = useState(new Date());
     const [money, setMoney] = useState(null);
+    const [quantity, setQuantity] = useState(null);
+
     const handleWallet = (e) => {
         setWallet(e.target.value);
     };
@@ -33,6 +35,10 @@ const ApplyContainer = () => {
     const handleMoney = (e) => {
         setMoney(e.target.value);
     };
+
+    const handleQuantity = (e) => {
+        setQuantity(e.target.value);
+    };
     const handleForm = async (e) => {
         e.preventDefault();
         const info = {
@@ -42,10 +48,13 @@ const ApplyContainer = () => {
             sale,
             startDate,
             money,
+            quantity,
         };
+        console.log(info);
         alert("관리자 검토 후 등록 완료됩니다.");
         try {
             const respose = await Http.post("/apply", info);
+
             alert("저장 성공!");
         } catch (e) {
             console.log(e);
@@ -61,6 +70,7 @@ const ApplyContainer = () => {
                 sale={sale}
                 startDate={startDate}
                 money={money}
+                quantity={quantity}
                 handleWallet={handleWallet}
                 handleName={handleName}
                 handleContent={handleContent}
@@ -68,6 +78,7 @@ const ApplyContainer = () => {
                 handleForm={handleForm}
                 setStartDate={setStartDate}
                 handleMoney={handleMoney}
+                handleQuantity={handleQuantity}
             ></ApplyPresenter>
         </Container>
     );

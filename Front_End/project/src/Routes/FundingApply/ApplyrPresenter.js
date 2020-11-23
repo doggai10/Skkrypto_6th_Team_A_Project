@@ -83,6 +83,7 @@ const ApplyPresenter = ({
     sale,
     startDate,
     money,
+    quantity,
     handleWallet,
     handleName,
     handleContent,
@@ -90,6 +91,7 @@ const ApplyPresenter = ({
     handleForm,
     setStartDate,
     handleMoney,
+    handleQuantity,
 }) => {
     return (
         <>
@@ -130,18 +132,24 @@ const ApplyPresenter = ({
                         onChange={handleSale}
                         value={sale}
                     ></Input>
+                    <Title>개당 가격 (원)</Title>
+                    <Input
+                        type="number"
+                        onChange={handleMoney}
+                        value={money}
+                    ></Input>
+                    <Title>펀딩 수량</Title>
+                    <Input
+                        type="number"
+                        onChange={handleQuantity}
+                        value={quantity}
+                    ></Input>
                     <Title>마감 날짜</Title>
                     <DateTimePicker
                         onChange={setStartDate}
                         value={startDate}
                         format="y-MM-dd HH시"
                     />
-                    <Title>모금액(원)</Title>
-                    <Input
-                        type="number"
-                        onChange={handleMoney}
-                        value={money}
-                    ></Input>
                     <Button>SAVE</Button>
                 </Form>
             </Container>
