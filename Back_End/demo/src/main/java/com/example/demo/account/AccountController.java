@@ -52,7 +52,7 @@ public class AccountController {
         System.out.println("account id: "+account.getId());
         System.out.println("account email: "+account.getEmail());
         System.out.println("funding password: "+account.getPassword());
-        //accountService.login(account);
+        accountService.login(account);
         return  account;
     }
 
