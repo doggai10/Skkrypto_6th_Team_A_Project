@@ -63,6 +63,7 @@ const SignUpPresenter = ({
     handleSubmit,
     renderFeedbackMessage,
     doesPasswordMatch,
+    getKeyring,
 }) => {
     return (
         <Container onSubmit={handleSubmit}>
@@ -84,13 +85,8 @@ const SignUpPresenter = ({
                 isOk={doesPasswordMatch()}
             ></Confirm>
             {renderFeedbackMessage()}
-            {/* <Title>개인키</Title>
-            <SecretInput
-                type="password"
-                onChange={handlepKey}
-                value={privatKey}
-            ></SecretInput> */}
-            <Button>SAVE</Button>
+
+            <Button onClick={getKeyring}>SAVE</Button>
         </Container>
     );
 };

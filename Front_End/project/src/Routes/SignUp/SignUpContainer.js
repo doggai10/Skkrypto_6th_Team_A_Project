@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import SignUpPresenter from "./SignUpPresenter";
 import axios from "axios";
 import styled from "styled-components";
+import { cav } from "Caver/caver";
+import { signatureData } from "caver-js/packages/caver-wallet/src/keyring/keyringFactory";
 
 const Container = styled.div`
     display: flex;
@@ -14,13 +16,15 @@ const Error = styled.div`
 const SignUpContainer = () => {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
-    // const [privatKey, setpKey] = useState("");
     const [password, setPassword] = useState("");
     const [confirm, setCofirm] = useState("");
+    const [key, setKeyring] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const SignData = { name, email, password, confirm };
+
+        const SignData = { name, email, password, key };
+        console.log(SignData);
 
         try {
             const res = await axios.post("/sign-up", SignData);
@@ -30,6 +34,10 @@ const SignUpContainer = () => {
         }
     };
 
+    const getKeyring = async () => {
+        const keyring = await cav.wallet.keyring.generate();
+        setKeyring(keyring.address);
+    };
     const doesPasswordMatch = () => {
         return password === confirm;
     };
@@ -47,20 +55,14 @@ const SignUpContainer = () => {
         setEmail(e.target.value);
     };
 
-    // const handlepKey = (e) => {
-    //     setpKey(e.target.value);
-    // };
-
     const handlePassword = (e) => {
-        // console.log(e.target.value);
         setPassword(e.target.value);
     };
 
     const handleConfirmPassword = (e) => {
-        // console.log(e.target.value);
         setCofirm(e.target.value);
     };
-    console.log(renderFeedbackMessage());
+
     return (
         <Container>
             <SignUpPresenter
@@ -75,6 +77,7 @@ const SignUpContainer = () => {
                 handleSubmit={handleSubmit}
                 renderFeedbackMessage={renderFeedbackMessage}
                 doesPasswordMatch={doesPasswordMatch}
+                getKeyring={getKeyring}
             ></SignUpPresenter>
         </Container>
     );
