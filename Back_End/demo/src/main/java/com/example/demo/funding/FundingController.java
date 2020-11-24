@@ -43,10 +43,9 @@ public class FundingController {
 
 
     @GetMapping("/apply")
-    public void applyForm(HttpServletResponse response, Model model)  {
+    public void applyForm( Model model)  {
        model.addAttribute(new FundingForm());
-        response.setHeader("Location", "localhost:8080/apply");
-        response.setStatus(302);
+
     }
 
 
@@ -62,6 +61,9 @@ public class FundingController {
         System.out.println("funding name: "+funding.getName());
         System.out.println("funding content: "+funding.getContent());
         System.out.println("funding sale: "+funding.getSale());
+        System.out.println("funding quantity: "+funding.getQuantity());
+        System.out.println("funding price: "+funding.getMoney());
+        System.out.println("funding date: "+funding.getDate());
     }
 }
 
