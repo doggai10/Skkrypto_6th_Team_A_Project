@@ -7,6 +7,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter @EqualsAndHashCode(of="id")
@@ -27,6 +28,15 @@ public class Funding {
 
     @Column
     private String sale;
+
+    @Column
+    private String money;
+
+    @Column
+    private String quantity;
+
+    @Column
+    private String date;
 
 
 

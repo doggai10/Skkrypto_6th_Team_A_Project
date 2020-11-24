@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Modal from "react-modal";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 const Container = styled.form`
@@ -49,6 +49,7 @@ Modal.setAppElement("#root");
 
 const SignIn = () => {
     const [modalIsOpen, setIsOpen] = useState(false);
+    const history = useHistory();
     const openModal = () => {
         setIsOpen(true);
     };
@@ -64,13 +65,16 @@ const SignIn = () => {
         e.preventDefault();
         const userData = { email, password };
         try {
-            const res = await axios.post("/login", userData);
+            const res = await axios.post("/login", userData); // 로그인 반응.
 
-            const isLogin = await axios.get("/login");
-            if (isLogin.data) {
+            if (res.data.status) {
+                alert("로그인 성공!");
+                history.push("/");
+            } else {
+                alert("로그인 실패!");
             }
-            console.log(res);
         } catch (e) {
+            alert("로그인 실패!");
             console.log(e);
         }
     };
