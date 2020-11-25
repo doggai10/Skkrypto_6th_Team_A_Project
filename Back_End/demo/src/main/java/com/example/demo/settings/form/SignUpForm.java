@@ -21,6 +21,10 @@ public class SignUpForm {
     @NotBlank
     private String password;
 
+    @NotBlank
+    private String key;
+
+
 
 
 

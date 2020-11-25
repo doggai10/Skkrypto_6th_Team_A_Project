@@ -9,6 +9,7 @@ const Container = styled.form`
     display: flex;
     flex-direction: column;
     border-radius: 10px;
+    z-index: 100;
 `;
 
 const Input = styled.input`
@@ -27,6 +28,7 @@ const customStyles = {
         marginRight: "-50%",
         transform: "translate(-50%, -50%)",
         borderRadius: "20px",
+        overflow: "hidden",
     },
 };
 
@@ -45,10 +47,21 @@ const Button = styled.button`
     font-family: "Jua", sans-serif;
 `;
 
+const SignUpbtn = styled(Link)`
+    margin: 10px auto;
+    text-decoration: none;
+    color: black;
+
+    &:hover {
+        color: red;
+    }
+`;
+
 Modal.setAppElement("#root");
 
 const SignIn = () => {
     const [modalIsOpen, setIsOpen] = useState(false);
+    const [isLogin, setLogin] = useState(false);
     const history = useHistory();
     const openModal = () => {
         setIsOpen(true);
@@ -56,6 +69,10 @@ const SignIn = () => {
 
     const closeModal = () => {
         setIsOpen(false);
+    };
+
+    const goMypage = () => {
+        history.push("/mypage");
     };
 
     const [email, setEmail] = useState("");
@@ -69,6 +86,7 @@ const SignIn = () => {
 
             if (res.data.status) {
                 alert("로그인 성공!");
+
                 history.push("/");
             } else {
                 alert("로그인 실패!");
@@ -77,6 +95,8 @@ const SignIn = () => {
             alert("로그인 실패!");
             console.log(e);
         }
+        setLogin(true);
+        closeModal();
     };
 
     const handleEmail = (e) => {
@@ -89,7 +109,11 @@ const SignIn = () => {
 
     return (
         <div>
-            <Button onClick={openModal}>로그인/회원가입</Button>
+            {!isLogin ? (
+                <Button onClick={openModal}>로그인/회원가입</Button>
+            ) : (
+                <Button onClick={goMypage}>Mypage</Button>
+            )}
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
@@ -112,9 +136,9 @@ const SignIn = () => {
                     ></Input>
                     <button>로그인</button>
                     <button onClick={closeModal}>취소</button>
-                    <Link to="/signup" onClick={closeModal}>
+                    <SignUpbtn to="/signup" onClick={closeModal}>
                         회원가입하기
-                    </Link>
+                    </SignUpbtn>
                 </Container>
             </Modal>
         </div>

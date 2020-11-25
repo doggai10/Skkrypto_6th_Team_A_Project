@@ -21,8 +21,8 @@ const Title = styled.div`
     width: 100%;
     text-align: center;
     font-size: 70px;
-    z-index: 100;
-    top: 600px;
+    z-index: 0;
+    top: 500px;
     padding: 20px 0;
 `;
 
@@ -36,6 +36,7 @@ const Box = styled.div`
 `;
 const ImgBox = styled.div`
     width: 100%;
+    display: flex;
     white-space: nowrap;
     overflow-x: scroll;
     position: absolute;
@@ -43,10 +44,12 @@ const ImgBox = styled.div`
     &::-webkit-scrollbar {
         display: none;
     }
+    height: 30%;
 `;
 const Img = styled.img`
-    height: 700px;
-    width: 700px;
+    display: block;
+    height: auto;
+    max-width: 30%;
     object-fit: cover;
     margin-right: 100px;
     border-radius: 10px;

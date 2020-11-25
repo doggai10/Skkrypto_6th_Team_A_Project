@@ -28,8 +28,8 @@ public class FundingForm {
     @NotBlank
     private String quantity;
 
-    //@NotBlank
-    private String localDateTime;
+    @NotBlank
+    private String date;
 
 
 

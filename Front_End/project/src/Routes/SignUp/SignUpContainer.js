@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import SignUpPresenter from "./SignUpPresenter";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { cav } from "Caver/caver";
 import { signatureData } from "caver-js/packages/caver-wallet/src/keyring/keyringFactory";
@@ -20,6 +21,7 @@ const SignUpContainer = () => {
     const [confirm, setCofirm] = useState("");
     const [key, setKeyring] = useState(null);
 
+    const history = useHistory();
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -32,6 +34,7 @@ const SignUpContainer = () => {
         } catch (e) {
             console.log(e);
         }
+        history.push("/");
     };
 
     const getKeyring = async () => {

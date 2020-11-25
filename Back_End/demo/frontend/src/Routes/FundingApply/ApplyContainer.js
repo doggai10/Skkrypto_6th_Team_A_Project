@@ -2,10 +2,20 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import ApplyPresenter from "./ApplyrPresenter";
 import Http from "Api/api";
+import { useHistory } from "react-router-dom";
 
 const Container = styled.div`
     overflow: auto;
 `;
+
+function getToday() {
+    const date = new Date();
+    const year = date.getFullYear();
+    const month = ("0" + (1 + date.getMonth())).slice(-2);
+    const day = ("0" + date.getDate()).slice(-2);
+    const hours = date.getHours();
+    return year + month + day + hours;
+}
 
 const ApplyContainer = () => {
     const [wallet, setWallet] = useState("");
@@ -16,6 +26,7 @@ const ApplyContainer = () => {
     const [money, setMoney] = useState(null);
     const [quantity, setQuantity] = useState(null);
 
+    const history = useHistory();
     const handleWallet = (e) => {
         setWallet(e.target.value);
     };
@@ -41,24 +52,26 @@ const ApplyContainer = () => {
     };
     const handleForm = async (e) => {
         e.preventDefault();
+
+        const date = getToday(startDate);
         const info = {
             wallet,
             name,
             content,
             sale,
-            startDate,
+            date,
             money,
             quantity,
         };
-        console.log(info);
-        alert("관리자 검토 후 등록 완료됩니다.");
+
         try {
             const respose = await Http.post("/apply", info);
-
             alert("저장 성공!");
+            alert("관리자 검토 후 등록 완료됩니다.");
         } catch (e) {
             console.log(e);
         }
+        history.push("/");
     };
 
     return (
