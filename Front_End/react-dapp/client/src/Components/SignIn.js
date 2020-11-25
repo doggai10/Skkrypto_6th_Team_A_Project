@@ -86,7 +86,7 @@ const SignIn = () => {
 
             if (res.data.status) {
                 alert("로그인 성공!");
-                setLogin(true);
+
                 history.push("/");
             } else {
                 alert("로그인 실패!");
@@ -95,6 +95,7 @@ const SignIn = () => {
             alert("로그인 실패!");
             console.log(e);
         }
+        setLogin(true);
         closeModal();
     };
 
