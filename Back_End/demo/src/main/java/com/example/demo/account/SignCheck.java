@@ -10,7 +10,7 @@ import lombok.*;
 @Data
 public class SignCheck {
 
-    //private String name;
+    private String name;
 
     private String wallet;
 

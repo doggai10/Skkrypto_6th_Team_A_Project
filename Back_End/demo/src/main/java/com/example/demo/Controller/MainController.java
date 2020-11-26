@@ -42,10 +42,12 @@ public class MainController {
         SignCheck signCheck=new SignCheck();
         if (account == null || !account.getPassword().equals(signInForm.getPassword()) ) {
             System.out.println("false");
+            signCheck.setName("null");
             signCheck.setWallet("null");
             signCheck.setStatus("false");
         }else{
             accountService.login(account);
+            signCheck.setWallet(account.getEmail());
             signCheck.setWallet(account.getKey());
             signCheck.setStatus("true");
         }

@@ -56,6 +56,24 @@ public class AccountController {
         return  account;
     }
 
+//    @PostMapping("/sign-up")
+//    public SignCheck signUpSubmit (@Valid @RequestBody SignUpForm signUpForm, Model model, Errors errors){
+//        if(errors.hasErrors()){
+//            model.addAttribute("error", "회원가입을 할 수 없습니다.");
+//            return  null;
+//        }
+//        SignCheck signCheck=new SignCheck();
+//        Account account = accountService.processNewAccount(signUpForm);
+//        System.out.println("account id: "+account.getId());
+//        System.out.println("account email: "+account.getEmail());
+//        System.out.println("funding password: "+account.getPassword());
+//        accountService.login(account);
+//        signCheck.setWallet(account.getEmail());
+//        signCheck.setWallet(account.getKey());
+//        signCheck.setStatus("true");
+//        return  signCheck;
+//    }
+//
 
 
 }
