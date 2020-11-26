@@ -26,15 +26,10 @@ import java.util.Optional;
 public class FundingController {
 
     private final FundingService fundingService;
-    private final  FundingRepository fundingRepository;
     private  final FundingFormValidator fundingFormValidator;
 
 
-    @Autowired
-    public List<FundingMapping> findFunding(){
-        List<FundingMapping> fundingList = fundingRepository.findAllBy();
-        return fundingList;
-    }
+
 
     @InitBinder("fundingForm")
     public void initBinder(WebDataBinder webDataBinder){
@@ -65,15 +60,5 @@ public class FundingController {
         System.out.println("funding date: "+funding.getDate());
     }
 
-
-    @GetMapping("/funding/{index}")
-    public FundingMapping fundingApply(@PathVariable("index") int index){
-        List<FundingMapping> fundingList=findFunding();
-        if(fundingList.size()<index){
-            return null;
-        }else{
-            return fundingList.get(index);
-        }
-    }
 }
 
