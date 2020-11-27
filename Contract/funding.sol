@@ -1,8 +1,22 @@
 pragma solidity >=0.4.24 <=0.5.6;
+library SafeMath {
+  function sub(uint256 a, uint256 b) internal pure returns (uint256) {
+    assert(b <= a);
+    return a - b;
+  }
+    function add(uint256 a, uint256 b) internal pure returns (uint256) {
+        uint256 c = a + b;
+        require(c >= a, "SafeMath: addition overflow");
 
+        return c;
+    }
+}
 contract Funding {
+    using SafeMath for uint;
+    mapping (address => uint256) private _balances;
+      
     address public owner;
-
+    event Transfer(address indexed from, address indexed to, uint256 value);
     struct funding {
         //펀딩 구조체.
         address restaurant;
@@ -24,7 +38,7 @@ contract Funding {
     constructor() public {
         owner = msg.sender;
     }
-
+    
     function createFunding(address restaurant,
         string memory foodname,
         uint256 endTime,
@@ -33,7 +47,7 @@ contract Funding {
     ) public {
         fundingList.push(funding(restaurant, foodname,endTime, 0, totalAmount, 0, price));
     }
-
+    
     /// 음식점 인덱스 찾기.
     function findTarget(
         address a,
@@ -55,16 +69,16 @@ contract Funding {
     
     function UpdateValue(uint256 idx, uint256 money) public returns (bool)
     {
-        //uint256 userbalance = getBalanceUser();
+        //uint256 userbalance = getBalance();
         if (fundingList[idx].amount < fundingList[idx].totalAmount) {
-            if (getBalanceUser() >= fundingList[idx].price) {
+            if (getBalance() >= fundingList[idx].price) {
                 fundingList[idx].amount += money;
                 fundingList[idx].people++;
-                transfer(money);
+                _transfer(msg.sender,owner,money);
             }
         }
         if (checkDone(idx)) {
-            // 자영업자에게 송금.fudingList[idx].restaurant 송금.
+            fundingSuccess(idx);
         }
     }
 
@@ -72,27 +86,44 @@ contract Funding {
         if (fundingList[idx].amount == fundingList[idx].totalAmount) {
             return true;
         }
-
         return false;
     }
 
-    // 컨트랙트 담긴 금액.
+    function deposit() public payable {  
+         require(msg.sender == owner);
+    }   
+
     function getBalance() public view returns (uint256) {
         return address(this).balance;
     }
 
-    // 사용자 돈
-    function getBalanceUser() internal view returns (uint256) {
-        return address(msg.sender).balance;
+    function fundingSuccess(uint256 idx) public returns(bool) {
+      _transfer(owner, fundingList[idx].restaurant, fundingList[idx].totalAmount);
+      return true;
     }
-
-    function deposit() public payable {  
-        require(msg.sender == owner);
-    }   
-    
-
-    function transfer(uint256 amount) public returns (bool) {
+        
+    function transferFromContract(address recipient, uint256 amount) public returns (bool) {
+        _transfer(owner, recipient, amount);
+        return true;
+    }
+    function transferToContract(uint256 amount) public returns (bool) {
         msg.sender.transfer(amount);
         return true;
     }
+    function _transfer(address sender, address recipient, uint256 amount) internal {
+        _balances[sender] = _balances[sender].sub(amount);
+        _balances[recipient] = _balances[recipient].add(amount);
+        emit Transfer(sender, recipient, amount);
+    }
+
+    //  function transfer(uint256 amount) public returns (bool) {
+    //     msg.sender.transfer(amount);
+    //     return true;
+    // }
+
+    // function getBalanceUser() internal view returns (uint256) {
+    //     return address(msg.sender).balance;
+    // }
+
+    
 }
