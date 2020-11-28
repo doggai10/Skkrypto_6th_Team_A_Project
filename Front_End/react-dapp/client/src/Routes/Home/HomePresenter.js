@@ -12,6 +12,7 @@ const Container = styled.div`
     position: relative;
     background-image: url(${BackGround});
     height: 100vh;
+    width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
 `;
@@ -22,56 +23,120 @@ const Title = styled.div`
     text-align: center;
     font-size: 70px;
     z-index: 0;
-    top: 500px;
+    top: 20px;
     padding: 20px 0;
 `;
 
 const Box = styled.div`
     position: absolute;
-    bottom: 0px;
-    background-color: gray;
-    opacity: 0.5;
-    height: 65%;
+    bottom: 0;
+    background-color: rgba(226, 226, 226, 0.5);
+    height: 60%;
     width: 100%;
 `;
 const ImgBox = styled.div`
     width: 100%;
+    height: 80%;
     display: flex;
-    white-space: nowrap;
-    overflow-x: scroll;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+
     position: absolute;
-    bottom: 80px;
+    bottom: 0;
     &::-webkit-scrollbar {
         display: none;
     }
-    height: 30%;
 `;
-const Img = styled.img`
-    display: block;
-    height: auto;
-    max-width: 30%;
-    object-fit: cover;
-    margin-right: 100px;
+const Img = styled.div`
+    position: relative;
+    flex: 0 0 auto;
+    height: 70%;
+    width: 30%;
+    margin: 0 40px;
     border-radius: 10px;
+    background-image: url(${(props) => props.img});
+    background-repeat: no-repeat;
+    background-size: cover;
 `;
+const Info = styled.div`
+    position: absolute;
+    height: 30%;
+    width: 100%;
+    bottom: 0;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    font-size: 60px;
+`;
+
 const HomePresenter = () => {
     return (
         <Container>
-            <Box></Box>
-            <Title>할인 펀딩 목록</Title>
-            <ImgBox>
-                <Img src={m1}></Img>
-                <Img src={m2}></Img>
-                <Img src={m6}></Img>
-                <Img src={m4}></Img>
-                <Img src={m1}></Img>
-                <Img src={m2}></Img>
-                <Img src={m6}></Img>
-                <Img src={m4}></Img>
-                <Img src={m3}></Img>
-                <Img src={m1}></Img>
-                <Img src={m2}></Img>
-            </ImgBox>
+            <Box>
+                <Title>할인 펀딩 목록</Title>
+                <ImgBox>
+                    <Img img={m1}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m2}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m6}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m4}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m1}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m2}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m6}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m4}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m3}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m1}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m2}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m3}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m1}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m2}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m3}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m1}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m2}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m3}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m1}>
+                        <Info>정돈</Info>
+                    </Img>
+                    <Img img={m2}>
+                        <Info>정돈</Info>
+                    </Img>
+                </ImgBox>
+            </Box>
         </Container>
     );
 };

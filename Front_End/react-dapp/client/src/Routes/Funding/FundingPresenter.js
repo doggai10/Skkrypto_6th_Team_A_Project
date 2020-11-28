@@ -30,14 +30,14 @@ const Message = styled.div`
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 30%;
+    height: 20%;
     background-color: white;
     opacity: 0.9;
     border-radius: 20px;
 `;
 const Title = styled.div`
-    margin-top: 15px;
-    font-size: 40px;
+    margin: 35px auto;
+    font-size: 50px;
     text-align: center;
 `;
 const FundingBtn = styled(Link)`
