@@ -74,11 +74,11 @@ contract Funding {
             if (getBalance() >= fundingList[idx].price) {
                 fundingList[idx].amount += money;
                 fundingList[idx].people++;
-                _transfer(msg.sender,owner,money);
+                //_transfer(msg.sender,owner,money);
             }
         }
         if (checkDone(idx)) {
-            fundingSuccess(idx);
+            //fundingSuccess(idx);
         }
     }
 
@@ -97,29 +97,29 @@ contract Funding {
         return address(this).balance;
     }
 
-    function fundingSuccess(uint256 idx) public returns(bool) {
-      _transfer(owner, fundingList[idx].restaurant, fundingList[idx].totalAmount);
-      return true;
-    }
+    // function fundingSuccess(uint256 idx) public returns(bool) {
+    //   _transfer(owner, fundingList[idx].restaurant, fundingList[idx].totalAmount);
+    //   return true;
+    // }
         
-    function transferFromContract(address recipient, uint256 amount) public returns (bool) {
-        _transfer(owner, recipient, amount);
-        return true;
-    }
-    function transferToContract(uint256 amount) public returns (bool) {
-        msg.sender.transfer(amount);
-        return true;
-    }
-    function _transfer(address sender, address recipient, uint256 amount) internal {
-        _balances[sender] = _balances[sender].sub(amount);
-        _balances[recipient] = _balances[recipient].add(amount);
-        emit Transfer(sender, recipient, amount);
-    }
-
-    //  function transfer(uint256 amount) public returns (bool) {
+    // function transferFromContract(address recipient, uint256 amount) public returns (bool) {
+    //     _transfer(owner, recipient, amount);
+    //     return true;
+    // }
+    // function transferToContract(uint256 amount) public returns (bool) {
     //     msg.sender.transfer(amount);
     //     return true;
     // }
+    // function _transfer(address sender, address recipient, uint256 amount) internal {
+    //     _balances[sender] = _balances[sender].sub(amount);
+    //     _balances[recipient] = _balances[recipient].add(amount);
+    //     emit Transfer(sender, recipient, amount);
+    // }
+
+     function transfer(uint256 amount) public returns (bool) {
+        msg.sender.transfer(amount);
+        return true;
+    }
 
     // function getBalanceUser() internal view returns (uint256) {
     //     return address(msg.sender).balance;
