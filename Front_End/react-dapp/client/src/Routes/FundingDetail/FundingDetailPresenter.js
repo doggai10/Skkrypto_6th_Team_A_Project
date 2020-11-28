@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import m1 from "assets/6.jpg";
-import { Button } from "antd";
 import Logo from "assets/logo.png";
+import "antd/dist/antd.css";
+import { Modal } from "antd";
 
 const Container = styled.div`
     width: 80%;
@@ -28,6 +29,7 @@ const Button1 = styled.button`
         transform: scale(0.95);
     }
     outline: none;
+    z-index: 1;
 `;
 
 const Button2 = styled.button`
@@ -44,6 +46,7 @@ const Button2 = styled.button`
         transform: scale(0.95);
     }
     outline: none;
+    z-index: 1;
 `;
 
 const Img = styled.div`
@@ -126,7 +129,14 @@ const Progress2 = styled.div`
     margin-bottom: 29px;
 `;
 
-const FundingDetailPresenter = ({ handleFunding, handleCancel }) => {
+const FundingDetailPresenter = ({
+    visible,
+    privkey,
+    handleFunding,
+    handleCancel,
+    handleOkandCancel,
+    handleKey,
+}) => {
     return (
         <Container>
             <Img></Img>
@@ -150,7 +160,6 @@ const FundingDetailPresenter = ({ handleFunding, handleCancel }) => {
                         65% 달성
                     </div>
                 </Progress2>
-
                 <Button1 onClick={handleFunding}>펀딩하기</Button1>
                 <Button2 onClick={handleCancel}>환불받기</Button2>
             </Box1>
@@ -190,6 +199,19 @@ const FundingDetailPresenter = ({ handleFunding, handleCancel }) => {
                     <br></br>제한수량 20개 <br></br>현재 12개 완료!
                 </Box2>
             </Info>
+            <Modal
+                title="개인키를 입력해주세요"
+                visible={visible}
+                onOk={handleOkandCancel}
+                onCancel={handleOkandCancel}
+            >
+                <input
+                    type="password"
+                    placeholder="개인키 입력"
+                    value={privkey}
+                    onChange={handleKey}
+                ></input>
+            </Modal>
         </Container>
     );
 };

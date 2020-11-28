@@ -7,6 +7,7 @@ import m3 from "assets/3.jpg";
 import m4 from "assets/4.jpg";
 import m5 from "assets/5.jpg";
 import m6 from "assets/6.jpg";
+import m7 from "assets/7.jpg";
 
 const Container = styled.div`
     position: relative;
@@ -75,17 +76,17 @@ const HomePresenter = () => {
             <Box>
                 <Title>할인 펀딩 목록</Title>
                 <ImgBox>
-                    <Img img={m1}>
-                        <Info>정돈</Info>
+                    <Img img={m7}>
+                        <Info>알촌_율전캠</Info>
                     </Img>
                     <Img img={m2}>
-                        <Info>정돈</Info>
+                        <Info>품_명륜캠</Info>
                     </Img>
                     <Img img={m6}>
-                        <Info>정돈</Info>
+                        <Info>쇼타 돈부리_명륜캠</Info>
                     </Img>
                     <Img img={m4}>
-                        <Info>정돈</Info>
+                        <Info>물결식당_명륜캠</Info>
                     </Img>
                     <Img img={m1}>
                         <Info>정돈</Info>
