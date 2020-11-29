@@ -15,11 +15,6 @@ contract Funding {
 
     funding[] internal fundingList;
 
-    // mapping(address => string) findfood;
-    // mapping(string => uint256) findIdx;
-
-    // uint256 value = 1000000000000000000; // 1Klay, peb단위
-
     constructor() public {
         owner = msg.sender;
     }
@@ -57,10 +52,11 @@ contract Funding {
         if (fundingList[idx].amount < fundingList[idx].totalAmount && now-fundingList[idx].endTime>=0) {
                 fundingList[idx].price += _value;
                 fundingList[idx].people++;
-                deposit();
+                deposit(_value);
         }
         if (checkDone(idx)) {
-            transferFromContract(fundingList[idx].totalAmount);
+            //transferFromContract(fundingList[idx].totalAmount);
+            transfer(fundingList[idx].totalAmount);
         }
     }
 
@@ -71,8 +67,9 @@ contract Funding {
         return false;
     }
 
-    function deposit() public payable {  
-    
+    function deposit(uint _value) public payable {  
+        require(getBalanceUser() >= _value);
+        address(this).transfer(_value);
     }   
 
     function getBalance() public view returns (uint) {
@@ -83,12 +80,6 @@ contract Funding {
         return address(msg.sender).balance;
     }
 
-        
-    function transferFromContract(uint _value) public returns (bool) {
-        require(getBalanceUser()>=_value);
-        address(this).transfer(_value);
-        return true;
-    }
 
     function transfer(uint _value) public returns (bool) {
         require(getBalance() >= _value);
@@ -97,6 +88,16 @@ contract Funding {
     }
 
 
+    // function transferFromContract(uint _value) public returns (bool) {
+    //     require(getBalanceUser()>=_value);
+    //     address(this).transfer(_value);
+    //     return true;
+    // }
+
+    // mapping(address => string) findfood;
+    // mapping(string => uint256) findIdx;
+
+    // uint256 value = 1000000000000000000; // 1Klay, peb단위
     
 }
 
