@@ -1,136 +1,103 @@
 pragma solidity >=0.4.24 <=0.5.6;
-
-library SafeMath {
-    function sub(uint256 a, uint256 b) internal pure returns (uint256) {
-        assert(b <= a);
-        return a - b;
-    }
-
-    function add(uint256 a, uint256 b) internal pure returns (uint256) {
-        uint256 c = a + b;
-        require(c >= a, "SafeMath: addition overflow");
-
-        return c;
-    }
-}
-
 contract Funding {
-    using SafeMath for uint256;
-    mapping(address => uint256) private _balances;
-
     address public owner;
     event Transfer(address indexed from, address indexed to, uint256 value);
     struct funding {
         //펀딩 구조체.
         address restaurant;
         string foodname;
-        uint256 endTime;
-        uint256 amount;
-        uint256 totalAmount;
-        uint256 people;
-        uint256 price;
+        uint endTime;
+        uint amount;
+        uint totalAmount;
+        uint people;
+        uint price;
     }
 
     funding[] internal fundingList;
 
-    mapping(address => string) findfood;
-    mapping(string => uint256) findIdx;
+    // mapping(address => string) findfood;
+    // mapping(string => uint256) findIdx;
 
-    uint256 value = 1000000000000000000; // 1Klay, peb단위
+    // uint256 value = 1000000000000000000; // 1Klay, peb단위
 
     constructor() public {
         owner = msg.sender;
     }
-
-    function createFunding(
-        address restaurant,
+    
+    function createFunding(address restaurant,
         string memory foodname,
-        uint256 endTime,
-        uint256 totalAmount,
-        uint256 price
+        uint endTime,
+        uint totalAmount,
+        uint price
     ) public {
-        fundingList.push(
-            funding(restaurant, foodname, endTime, 0, totalAmount, 0, price)
-        );
+        fundingList.push(funding(restaurant, foodname,endTime, 0, totalAmount, 0, price));
     }
-
+    
     /// 음식점 인덱스 찾기.
     function findTarget(
         address a,
         string memory f,
-        uint256 money
-    ) public returns (bool) {
-        uint256 result = 0;
-        for (uint256 i = 0; i < fundingList.length; i++) {
-            if (
-                fundingList[i].restaurant == a &&
-                keccak256(abi.encodePacked((fundingList[i].foodname))) ==
-                keccak256(abi.encodePacked((f)))
-            ) {
+        uint _value
+    ) public  returns (bool) {
+        uint result = 0;
+        for (uint i = 0; i < fundingList.length; i++) {
+            if (fundingList[i].restaurant == a && keccak256(abi.encodePacked((fundingList[i].foodname))) == keccak256(abi.encodePacked((f)))) {
                 result = i;
                 break;
             }
         }
         if (result != 0) {
-            UpdateValue(result, money);
+            UpdateValue(result, _value);
         }
         return false;
     }
-
-    function UpdateValue(uint256 idx, uint256 money) public returns (bool) {
-        //uint256 userbalance = getBalance();
-        if (fundingList[idx].amount < fundingList[idx].totalAmount) {
-            if (getBalance() >= fundingList[idx].price) {
-                fundingList[idx].amount += money;
+    
+    function UpdateValue(uint idx, uint _value) public returns (bool)
+    {
+        if (fundingList[idx].amount < fundingList[idx].totalAmount && now-fundingList[idx].endTime>=0) {
+                fundingList[idx].price += _value;
                 fundingList[idx].people++;
-                //_transfer(msg.sender,owner,money);
-            }
+                deposit();
         }
         if (checkDone(idx)) {
-            //fundingSuccess(idx);
+            transferFromContract(fundingList[idx].totalAmount);
         }
     }
 
-    function checkDone(uint256 idx) public view returns (bool) {
+    function checkDone(uint idx) internal view returns (bool) {
         if (fundingList[idx].amount == fundingList[idx].totalAmount) {
             return true;
         }
         return false;
     }
 
-    function deposit() public payable {
-        require(msg.sender == owner);
-    }
+    function deposit() public payable {  
+    
+    }   
 
-    function getBalance() public view returns (uint256) {
+    function getBalance() public view returns (uint) {
         return address(this).balance;
     }
 
-    // function fundingSuccess(uint256 idx) public returns(bool) {
-    //   _transfer(owner, fundingList[idx].restaurant, fundingList[idx].totalAmount);
-    //   return true;
-    // }
+    function getBalanceUser() public view returns (uint) {
+        return address(msg.sender).balance;
+    }
 
-    // function transferFromContract(address recipient, uint256 amount) public returns (bool) {
-    //     _transfer(owner, recipient, amount);
-    //     return true;
-    // }
-    // function transferToContract(uint256 amount) public returns (bool) {
-    //     msg.sender.transfer(amount);
-    //     return true;
-    // }
-    // function _transfer(address sender, address recipient, uint256 amount) internal {
-    //     _balances[sender] = _balances[sender].sub(amount);
-    //     _balances[recipient] = _balances[recipient].add(amount);
-    //     emit Transfer(sender, recipient, amount);
-    // }
-
-    function transfer(uint256 amount) public returns (bool) {
-        msg.sender.transfer(amount);
+        
+    function transferFromContract(uint _value) public returns (bool) {
+        require(getBalanceUser()>=_value);
+        address(this).transfer(_value);
         return true;
     }
 
-    // function getBalanceUser() internal view returns (uint256) {
-    //     return address(msg.sender).balance;
-    // }
+    function transfer(uint _value) public returns (bool) {
+        require(getBalance() >= _value);
+        msg.sender.transfer(_value);
+        return true;
+    }
+
+
+    
 }
+
+
