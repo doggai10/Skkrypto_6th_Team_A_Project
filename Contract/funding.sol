@@ -69,7 +69,7 @@ contract Funding {
 
     function deposit(uint _value) public payable {  
         require(getBalanceUser() >= _value);
-        address(this).transfer(_value);
+        //address(this).transfer(_value);
     }   
 
     function getBalance() public view returns (uint) {
