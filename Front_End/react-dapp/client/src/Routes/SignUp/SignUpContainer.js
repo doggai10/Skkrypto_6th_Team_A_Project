@@ -18,6 +18,7 @@ const Error = styled.div`
 
 const Priv = styled.div`
     font-size: 25px;
+    
 `;
 
 const SignUpContainer = () => {
@@ -30,6 +31,7 @@ const SignUpContainer = () => {
     const [visible, setVisible] = useState(false);
 
     const history = useHistory();
+    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
