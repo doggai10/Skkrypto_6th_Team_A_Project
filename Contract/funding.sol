@@ -1,7 +1,6 @@
 pragma solidity >=0.4.24 <=0.5.6;
 contract Funding {
     address public owner;
-    event Transfer(address indexed from, address indexed to, uint256 value);
     struct funding {
         //펀딩 구조체.
         address restaurant;
@@ -52,7 +51,6 @@ contract Funding {
         if (fundingList[idx].amount < fundingList[idx].totalAmount && now-fundingList[idx].endTime>=0) {
                 fundingList[idx].price += _value;
                 fundingList[idx].people++;
-                deposit(_value);
         }
         if (checkDone(idx)) {
             //transferFromContract(fundingList[idx].totalAmount);
@@ -67,8 +65,8 @@ contract Funding {
         return false;
     }
 
-    function deposit(uint _value) public payable {  
-        require(getBalanceUser() >= _value);
+    function deposit() public payable {  
+        //require(getBalanceUser() >= _value);
         //address(this).transfer(_value);
     }   
 
