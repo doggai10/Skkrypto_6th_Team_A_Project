@@ -1,9 +1,10 @@
 pragma solidity >=0.4.24 <=0.5.6;
 contract Funding {
+     // uint256 value = 1000000000000000000; // 1Klay, peb단위
     address public owner;
     struct funding {
         //펀딩 구조체.
-        address restaurant;
+        address payable restaurant;
         string foodname;
         uint endTime;
         uint amount;
@@ -18,7 +19,7 @@ contract Funding {
         owner = msg.sender;
     }
     
-    function createFunding(address restaurant,
+    function createFunding(address payable restaurant,
         string memory foodname,
         uint endTime,
         uint totalAmount,
@@ -40,10 +41,11 @@ contract Funding {
                 break;
             }
         }
-        if (result != 0) {
-            UpdateValue(result, _value);
+        if (result == 0) {
+            return false;
         }
-        return false;
+        UpdateValue(result, _value);
+        return true;
     }
     
     function UpdateValue(uint idx, uint _value) public returns (bool)
@@ -53,8 +55,7 @@ contract Funding {
                 fundingList[idx].people++;
         }
         if (checkDone(idx)) {
-            //transferFromContract(fundingList[idx].totalAmount);
-            transfer(fundingList[idx].totalAmount);
+            transferFromContract(fundingList[idx].restaurant,fundingList[idx].totalAmount);
         }
     }
 
@@ -66,8 +67,7 @@ contract Funding {
     }
 
     function deposit() public payable {  
-        //require(getBalanceUser() >= _value);
-        //address(this).transfer(_value);
+   
     }   
 
     function getBalance() public view returns (uint) {
@@ -86,17 +86,9 @@ contract Funding {
     }
 
 
-    // function transferFromContract(uint _value) public returns (bool) {
-    //     require(getBalanceUser()>=_value);
-    //     address(this).transfer(_value);
-    //     return true;
-    // }
-
-    // mapping(address => string) findfood;
-    // mapping(string => uint256) findIdx;
-
-    // uint256 value = 1000000000000000000; // 1Klay, peb단위
-    
+    function transferFromContract(address payable reciever,uint _value) public returns (bool) {
+        require(getBalanceUser()>=_value);
+        reciever.transfer(_value);
+        return true;
+    }
 }
-
-
