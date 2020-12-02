@@ -28,17 +28,18 @@
 
 ```java
 Installation 
-Git clone 
+git clone https://github.com/SKKU-SKKRYPTO/Skkrypto_6th_Team_A_Project.git
 
-Cd ./frontend 
+cd ./frontend 
 
-Npm install 
+npm install 
 
-Cd ../
+cd ../
 
 ./mvnw clean install 
 
-Java -jar target/demo- ~~~ .jar 
+java -jar target/demo-0.0.1-SNAPSHOT.jar
+
 실행
 
 1. 펀딩 신청 페이지에 가서 펀딩 신청
