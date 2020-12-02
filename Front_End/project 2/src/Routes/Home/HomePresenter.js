@@ -69,6 +69,8 @@ const Info = styled.div`
     text-align: left;
     padding-left: 15px;
     font-size: 50px;
+    display: flex;
+    flex-direction: column;
 `;
 
 const Comment = styled.div`
@@ -88,15 +90,13 @@ const Progress = styled.div`
 `;
 
 const Progress2 = styled.div`
-    position: absolute;
-    top: 150px;
     width: 90%;
     height: 6px;
     background-color: gray;
-    margin-bottom: 29px;
 `;
 
 const Percent = styled.div`
+    height: 10%;
     font-size: 25px;
 `;
 
@@ -114,9 +114,9 @@ const HomePresenter = () => {
                                 기회!
                             </Comment>
                             <Progress2>
+                                <Percent>30%</Percent>
                                 <Progress per="30"></Progress>
                             </Progress2>
-                            <Percent>30%</Percent>
                         </Info>
                     </Img>
                     <Img img={m2}>
@@ -127,9 +127,9 @@ const HomePresenter = () => {
                                 저렴한 가격에 다양한 음식을 맛 보세요!
                             </Comment>
                             <Progress2>
+                                <Percent>50%</Percent>
                                 <Progress per="50"></Progress>
                             </Progress2>
-                            <Percent>50%</Percent>
                         </Info>
                     </Img>
                     <Img img={m6}>
@@ -140,9 +140,9 @@ const HomePresenter = () => {
                                 선착순! 4000원에 가츠동을 만나보세요!
                             </Comment>
                             <Progress2>
+                                <Percent>70%</Percent>
                                 <Progress per="70"></Progress>
                             </Progress2>
-                            <Percent>70%</Percent>
                         </Info>
                     </Img>
                     <Img img={m4}>

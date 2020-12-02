@@ -21,7 +21,7 @@ const Button1 = styled.button`
     width: 300px;
     position: absolute;
     left: 0;
-    top: 250px;
+    bottom: 0;
     background-color: green;
     cursor: pointer;
     border-radius: 10px;
@@ -38,7 +38,7 @@ const Button2 = styled.button`
     width: 300px;
     position: absolute;
     left: 350px;
-    top: 250px;
+    bottom: 0;
     background-color: green;
     cursor: pointer;
     border-radius: 10px;
