@@ -64,7 +64,7 @@ const FundingDetailContainer = ({ match, location }) => {
             const value = await contractInstance.methods.deposit().send({
                 from: deployer.address,
                 gas: "250000",
-                value: cav.utils.convertToPeb(String(sendMoney), "Ston"),
+                value: cav.utils.convertToPeb(String(fundingAmount), "Ston"),
             });
             alert("펀딩 성공!");
             cav.wallet.remove(deployer.address);
