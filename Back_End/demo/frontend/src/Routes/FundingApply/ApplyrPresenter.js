@@ -109,9 +109,9 @@ const ApplyPresenter = ({
             </Top>
             <Container>
                 <Form onSubmit={handleForm}>
-                    <Title>지갑주소</Title>
+                    <Title>지갑 개인키</Title>
                     <Input
-                        type="text"
+                        type="password"
                         onChange={handleWallet}
                         value={wallet}
                     ></Input>

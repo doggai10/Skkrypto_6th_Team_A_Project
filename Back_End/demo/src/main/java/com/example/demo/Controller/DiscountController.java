@@ -3,6 +3,7 @@ package com.example.demo.Controller;
 
 import com.example.demo.account.SignCheck;
 import com.example.demo.domain.Account;
+import com.example.demo.domain.Funding;
 import com.example.demo.funding.FundingMapping;
 import com.example.demo.funding.FundingRepository;
 import com.example.demo.settings.form.SignInForm;
@@ -27,8 +28,9 @@ public class DiscountController {
     private final FundingRepository fundingRepository;
 
     @Autowired
-    public List<FundingMapping> findFunding(){
-        List<FundingMapping> fundingList = fundingRepository.findAllBy();
+    public List<Funding> findFunding(){
+        List<Funding> fundingList = fundingRepository.findAllBy();
+        System.out.println(fundingList.toString());
         return fundingList;
     }
 
@@ -39,13 +41,24 @@ public class DiscountController {
     }
 
     @GetMapping("/funding/{index}")
-    public FundingMapping fundingApply(@PathVariable("index") int index){
-        List<FundingMapping> fundingList=findFunding();
-        if(fundingList.size()<index){
+    public Funding fundingApply(@PathVariable("index") String index){
+        List<Funding> fundingList=findFunding();
+        int num = Integer.parseInt(index)-1;
+        if(fundingList.size()<num){
             return null;
-        }else{
-            return fundingList.get(index);
         }
+        Funding funding=fundingList.get(num);
+        return funding;
     }
-
+//    @GetMapping("/funding/1")
+//    public void fundingApply(){
+//        List<Funding> fundingList=findFunding();
+//        int num =0;
+////        if(fundingList.size()<num){
+////           System.out.println("null");
+////        }
+//        Funding funding=fundingList.get(0);
+//        System.out.println(funding.getMoney());
+//
+//    }
 }

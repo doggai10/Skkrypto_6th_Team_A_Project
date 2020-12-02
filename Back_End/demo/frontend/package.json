@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "dependencies": {
+        "antd": "^4.8.6",
         "axios": "^0.21.0",
         "caver-js": "^1.5.5",
         "cross-env": "^7.0.2",
