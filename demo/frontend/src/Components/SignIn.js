@@ -84,7 +84,7 @@ const SignIn = () => {
         try {
             const res = await axios.post("/login", userData); // 로그인 반응.
 
-            if (res.data.status) {
+            if (res.data.status==="true") {
                 alert("로그인 성공!");
                 setLogin(true);
                 history.push("/");
